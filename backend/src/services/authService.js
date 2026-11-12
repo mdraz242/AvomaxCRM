@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { env } from '../config/env.js';
 import { findProfileByEmail, findProfileById, findProfileWithHashById, updateStaffProfile } from '../repositories/staffRepository.js';

@@ -1,7 +1,11 @@
 import axios from 'axios';
 
+const rawEnvUrl = import.meta.env.VITE_API_BASE_URL;
+const isLocalhostUrl = rawEnvUrl && /^https?:\/\/(localhost|127\.0\.0\.1)(:|\/|$)/i.test(rawEnvUrl);
 const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || (import.meta.env.PROD ? '/api' : 'http://localhost:5001/api');
+  import.meta.env.PROD && (!rawEnvUrl || isLocalhostUrl)
+    ? '/api'
+    : rawEnvUrl || 'http://localhost:5001/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
