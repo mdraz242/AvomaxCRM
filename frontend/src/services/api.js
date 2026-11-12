@@ -1,11 +1,12 @@
 import axios from 'axios';
 
-const rawEnvUrl = import.meta.env.VITE_API_BASE_URL;
-const isLocalhostUrl = rawEnvUrl && /^https?:\/\/(localhost|127\.0\.0\.1)(:|\/|$)/i.test(rawEnvUrl);
-const API_BASE_URL =
-  import.meta.env.PROD && (!rawEnvUrl || isLocalhostUrl)
-    ? '/api'
-    : rawEnvUrl || 'http://localhost:5001/api';
+const isLocalhost =
+  typeof window !== 'undefined' &&
+  (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+
+const API_BASE_URL = isLocalhost
+  ? (import.meta.env.VITE_API_BASE_URL || 'http://localhost:5001/api')
+  : '/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
