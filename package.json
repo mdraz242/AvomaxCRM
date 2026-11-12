@@ -1,0 +1,14 @@
+{
+  "name": "avomax-crm",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace=frontend",
+    "test": "npm test --workspace=backend"
+  }
+}
